@@ -69,17 +69,21 @@ int main() {
 		Sleep(10); //0.01 Seconds
 		//printf("WAITED\n");
 	#endif
+
 		json parse_full = json::parse(cloud_vars);
 		std::string parse_steam_api = parse_full["☁ STEAM_API"];
-		if (parse_steam_api == "INIT")
-		{
-			steamapi_txt << "0";
-		}
-		else if (parse_steam_api == "2") {
-			steamapi_txt << "3";
-		}
-		else if (parse_steam_api == "3") {
-			steamapi_txt << "3";
+
+		if (parse_steam_api != "0") {
+			if (parse_steam_api == "INIT")
+			{
+				steamapi_txt << "0";
+			}
+			else if (parse_steam_api == "2") {
+				steamapi_txt << "3";
+			}
+			else if (parse_steam_api == "3") {
+
+			}
 		}
 	}
 
