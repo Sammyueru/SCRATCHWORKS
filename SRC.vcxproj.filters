@@ -150,10 +150,16 @@
     <ClInclude Include="INC\isteamdualsense.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="INC\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="INC\steam_api.json">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="LIB\steam_api64.dll">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -165,5 +171,15 @@
     <Text Include="LICENSE.TXT">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="README_STUFF\init.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="LIB\steam_api64.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>
