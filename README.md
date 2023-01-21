@@ -1,1 +1,6 @@
-# STARCAST_ONLINE_LAUNCHER
+# SCRATCHWORKS
+Steamworks for Scratch
+
+# Prerequisites
+- TurboWarp (Scratch Mod)
+- Fetch Extension
