@@ -2,7 +2,7 @@
 Steamworks for Scratch
 
 # Prerequisites:
-- TurboWarp (Scratch Mod)
+- [TurboWarp](https://github.com/TurboWarp/desktop) (Scratch Mod)
 - Fetch Extension
 
 # Initialize:
