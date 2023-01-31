@@ -158,7 +158,7 @@
     <None Include="INC\steam_api.json">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="LIB\steam_api64.dll">
+    <None Include="LIB\steam_api.dll">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
@@ -178,7 +178,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="LIB\steam_api64.lib">
+    <Library Include="LIB\steam_api.lib">
       <Filter>Resource Files</Filter>
     </Library>
   </ItemGroup>
