@@ -205,6 +205,7 @@
   <ItemGroup>
     <None Include="INC\steam_api.json" />
     <None Include="LIB\steam_api.dll" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MAIN.cpp" />
