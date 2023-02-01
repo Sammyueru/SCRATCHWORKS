@@ -3,8 +3,8 @@ Steamworks for Scratch
 
 # Prerequisites:
 - [TurboWarp](https://github.com/TurboWarp/desktop) (Scratch Mod)
-- Visual Studio 2022
-- Fetch Extension
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+- [Fetch Extension](https://extensions.turbowarp.org/fetch.js)
 
 # Setup
 1. Open the 'MAIN.cpp' file
