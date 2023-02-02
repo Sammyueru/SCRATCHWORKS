@@ -128,14 +128,14 @@ int main() {
 	//std::cout << cloud_vars_path;
 	std::string appExt = ".exe";
 
-	//system(scratchExe.append(appExt).c_str());
+	system(scratchExe.append(appExt).c_str());
 #else
 	std::string cloud_vars_path = getenv("APPDATA") + (std::string)"\\" + scratchExe + "\\Local Storage\\leveldb\\000003.LOG";
 	std::string appExt = ".exe";
 	system(scratchExe.append(appExt).c_str());
 #endif
 
-	//CSteamID userSteamID = SteamUser()->GetSteamID();
+	CSteamID userSteamID = SteamUser()->GetSteamID();
 
 	int running = 1;
 	while (running == 1) {
@@ -167,7 +167,8 @@ int main() {
 			parse_full.erase(std::remove(parse_full.begin(), parse_full.end(), '\00'), parse_full.end());
 			//std::string parse_full = parseStream.str();
 #else
-
+			std::string parse_full = parseStream.str();
+			parse_full.erase(std::remove(parse_full.begin(), parse_full.end(), '\00'), parse_full.end());
 #endif
 			
 			/*
@@ -215,6 +216,7 @@ int main() {
 			
 			//std::cout << parse_steam_api << '\n';
 			///*
+
 			int steamapi_txt_change = 0;
 			if (parse_steam_api != "0" && parse_steam_api != "") {
 				if (parse_steam_api == "INIT")
@@ -230,7 +232,7 @@ int main() {
 				}
 				else if (parse_steam_api == "3") {
 					//RETURN STEAM ID
-					//steamapi_txt << std::to_string(userSteamID.ConvertToUint64());
+					steamapi_txt << std::to_string(userSteamID.ConvertToUint64());
 					steamapi_txt_change = 1;
 				}
 				else if (parse_steam_api[0] == '4' && parse_steam_api[1] == '-') {
