@@ -12,6 +12,7 @@ FOUND IN THE LICENSE FILE (LICENSE.TXT)
 #include <stdio.h>
 #include <sstream>
 #include <filesystem>
+#include <Mongoose/mongoose.h>
 
 //CHANGE THESE VARIABLES - START
 //480 IS THE STEAM ID FOR "SpaceWar"
@@ -102,6 +103,40 @@ std::string* split_multistr(std::string str, std::string* token, std::string del
 }
 */
 
+static struct mg_serve_http_opts s_http_server_opts;
+
+static void ev_handler(struct mg_connection* nc, int ev, void* p) {
+	if (ev == MG_EV_HTTP_REQUEST) {
+		mg_serve_http(nc, (struct mg_http_message*)p, s_http_server_opts);
+	}
+}
+
+int initServer(int port) {
+	struct mg_mgr mgr;
+	struct mg_connection *nc;
+
+	std::string port_to_char = std::to_string(port);
+	static char const* sPort = port_to_char.c_str();
+
+	mg_mgr_init(&mgr);
+	nc = mg_bind(&mgr, sPort, ev_handler);
+
+	if (nc == NULL) {
+		return 1;
+	}
+
+	mg_set_protocol_http_websocket(nc);
+	s_http_server_opts.document_root = ".";
+	s_http_server_opts.enable_directory_listening = "yes";
+
+	for (;;) {
+		mg_mgr_poll(&mgr, 1000);
+	}
+
+	mg_mgr_free(&mgr);
+	return 0;
+}
+
 int main() {
 	if (SteamAPI_RestartAppIfNecessary(steamAppID)) {
 		return 1;
@@ -116,12 +151,17 @@ int main() {
 	//std::cout << std::filesystem::current_path().c_str() << '\n';
 	//std::string scratchworks_api_txt_path = (std::string)(char*)std::filesystem::current_path().c_str() + (char*)"/scratchworks_api.txt";
 	//std::cout << scratchworks_api_txt_path;
-	std::ofstream steamapi_txt("scratchworks_api.txt", std::ios::out | std::ios::trunc);
+	/*std::ofstream steamapi_txt("scratchworks_api.txt", std::ios::out | std::ios::trunc);
 	//steamapi_txt.open("scratchworks_api.txt", std::ios::out | std::ios::trunc);
 
 	if (!steamapi_txt.is_open()) {
 		return 1;
 	}
+	*/
+
+	std::string steamapi_txt = "";
+	int server_port = 1776;
+	initServer(server_port);
 
 #if PLATFORM 1
 	std::string cloud_vars_path = getenv("APPDATA") + (std::string)"\\" + scratchExe + "\\Local Storage\\leveldb\\000003.LOG";
@@ -216,23 +256,23 @@ int main() {
 			
 			//std::cout << parse_steam_api << '\n';
 			///*
-
 			int steamapi_txt_change = 0;
 			if (parse_steam_api != "0" && parse_steam_api != "") {
 				if (parse_steam_api == "INIT")
 				{
-					steamapi_txt << "0";
+					//steamapi_txt << "0";
+					steamapi_txt = "0";
 					//steamapi_txt.write("0", sizeof("0"));
 					//std::cout << "0";
 					steamapi_txt_change = 1;
 				}
 				else if (parse_steam_api == "2") {
-					steamapi_txt << "3";
+					steamapi_txt = "3";
 					steamapi_txt_change = 1;
 				}
 				else if (parse_steam_api == "3") {
 					//RETURN STEAM ID
-					steamapi_txt << std::to_string(userSteamID.ConvertToUint64());
+					steamapi_txt = std::to_string(userSteamID.ConvertToUint64());
 					steamapi_txt_change = 1;
 				}
 				else if (parse_steam_api[0] == '4' && parse_steam_api[1] == '-') {
@@ -261,11 +301,11 @@ int main() {
 									}
 
 									if (SteamMatchmaking()->CreateLobby(eSteamLobbyType, cMaxMembers)) {
-										steamapi_txt << "1";
+										steamapi_txt = "1";
 										steamapi_txt_change = 1;
 									}
 									else {
-										steamapi_txt << "0";
+										steamapi_txt = "0";
 										steamapi_txt_change = 1;
 									}
 								}
@@ -275,19 +315,20 @@ int main() {
 				}
 				else if (parse_steam_api == "5") {
 					//Check to make sure that Scratchworks launcher is still running
-					steamapi_txt << "-Z";
+					steamapi_txt = "-Z";
 					steamapi_txt_change = 1;
 				}
 			}
 			//*/
 			if (steamapi_txt_change != 0) {
-				steamapi_txt.seekp(0);
-				steamapi_txt.flush();
+				//steamapi_txt.seekp(0);
+				//steamapi_txt.flush();
+				
 			}
 			cloud_vars.close();
 		}
 	}
 
-	steamapi_txt.close();
+	//steamapi_txt.close();
 	return 0;
 }

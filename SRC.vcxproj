@@ -108,6 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\INC;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,6 +189,7 @@
     <ClInclude Include="INC\isteamvideo.h" />
     <ClInclude Include="INC\json.hpp" />
     <ClInclude Include="INC\matchmakingtypes.h" />
+    <ClInclude Include="INC\Mongoose\mongoose.h" />
     <ClInclude Include="INC\steamclientpublic.h" />
     <ClInclude Include="INC\steamencryptedappticket.h" />
     <ClInclude Include="INC\steamhttpenums.h" />
@@ -208,6 +210,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="INC\Mongoose\mongoose.c" />
     <ClCompile Include="MAIN.cpp" />
   </ItemGroup>
   <ItemGroup>

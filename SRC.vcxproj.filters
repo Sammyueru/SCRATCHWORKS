@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Mongoose">
+      <UniqueIdentifier>{2aee1d4b-e670-40d5-8f20-b282de48feef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mongoose">
+      <UniqueIdentifier>{f9b60e0e-1d03-4c7d-a689-0ad58177e730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="INC\isteamfriends.h">
@@ -153,6 +159,9 @@
     <ClInclude Include="INC\json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="INC\Mongoose\mongoose.h">
+      <Filter>Header Files\Mongoose</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="INC\steam_api.json">
@@ -168,6 +177,9 @@
   <ItemGroup>
     <ClCompile Include="MAIN.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INC\Mongoose\mongoose.c">
+      <Filter>Source Files\Mongoose</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
