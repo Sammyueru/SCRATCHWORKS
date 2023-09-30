@@ -1,3 +1,5 @@
+I have mostly stopped working on this, Scratchworks is not in a working state I may decide to come back to this project later though.
+
 # SCRATCHWORKS
 Steamworks for Scratch
 
